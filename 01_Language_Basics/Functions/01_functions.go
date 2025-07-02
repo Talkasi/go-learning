@@ -1,0 +1,57 @@
+package main
+
+import "fmt"
+
+// Обычное объявление
+func singleIn(in int) int {
+	return in
+}
+
+// Много параметров
+func multIn(a, b int, c int) int {
+	return a + b + c
+}
+
+// Именованный результат
+func namedReturn() (out int) {
+	out = 2
+	return
+}
+
+// Несколько результатов
+func multipleReturn(in int) (int, error) {
+	if in > 2 {
+		return 0, fmt.Errorf("some error happend")
+	}
+	return in, nil
+}
+
+// Несколько именованных результатов
+func multipleNamedReturn(ok bool) (rez int, err error) {
+	rez = 1
+	if ok {
+		err = fmt.Errorf("some error happend")
+		// Аналогично return rez, err
+		return 3, fmt.Errorf("some error happend")
+	}
+	rez = 2
+	return
+}
+
+// Не фиксированное количество параметров (только одного типа)
+func sum(in ...int) (result int) {
+	fmt.Printf("in := %#v \n", in)
+	for _, val := range in {
+		result += val
+	}
+	return
+}
+
+func main() {
+	// fmt.Println(multipleNamedReturn(false))
+	// return
+
+	nums := []int{1, 2, 3, 4}
+	fmt.Println(nums, sum(nums...))
+	return
+}
