@@ -15,7 +15,8 @@ func main() {
 				fmt.Println("after", i)
 			}
 			close(out)
-			out <- 12
+			// Send on closed channel
+			// out <- 12
 			fmt.Println("generator finish")
 		}(in)
 	}(in)
